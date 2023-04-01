@@ -44,6 +44,7 @@ export class HomePage implements OnInit {
   }
 
   post() {
+    if(this.postContent ==='') return
     this.dataService.addPost({post: this.postContent, notified: false, editable: false, liked: false, comments: []});
     this.postContent = ''
     this.dataService.addNotif({title:"New post added", active:true})
@@ -62,7 +63,7 @@ export class HomePage implements OnInit {
 
   commentPost(post: any, comment: any){
     let commentArr: string[] | undefined = [];
-
+    if(comment ==='') return
     this.postsArr.forEach(p => {
       if(post.id === p['id']) {
         commentArr = p['comments']
